@@ -6,7 +6,6 @@ public class ControlDeServicio {
        menuPrincipal mp=new menuPrincipal();
       
        mp.mostrarMenu();
-       mp.opcionIngresada();
     }
     
 }
