@@ -9,15 +9,13 @@ public class menuPrincipal {
     byte opcion;
     //Metodos
     public void mostrarMenu(){
+        menuOpciones ir=new menuOpciones();
         System.out.print("\t\t"+nombreApp);
         System.out.println("\n\t\t  Menú principal");
         for(int i=0;i<4;i++){
             System.out.println((i+1)+". "+opciones[i]);
         } 
-    }
         
-    public void opcionIngresada(){
-        menuOpciones ir=new menuOpciones();
         do{
         opcion=Byte.parseByte(JOptionPane.showInputDialog("Ingrese una opción: "));
         switch(opcion){
@@ -27,7 +25,6 @@ public class menuPrincipal {
                 break;
             case 3:
                 ir.mostrar();
-                ir.opcionIngresada();
                 break;
             case 4:
                 JOptionPane.showMessageDialog(null, "Saldrá");
@@ -37,8 +34,7 @@ public class menuPrincipal {
                 break;
         }
         }while((opcion<1)||(opcion>4));
-    
     }
-
+        
     
 }
