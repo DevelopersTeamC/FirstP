@@ -10,9 +10,9 @@ public class menuPrincipal {
     //Metodos
     public void mostrarMenu(){
         menuOpciones ir=new menuOpciones();
-        System.out.print("\t\t"+nombreApp);
+        System.out.print("\n\t\t"+nombreApp);
         System.out.println("\n\t\t  Menú principal");
-        for(int i=0;i<4;i++){
+        for(int i=0;i<opciones.length;i++){
             System.out.println((i+1)+". "+opciones[i]);
         } 
         

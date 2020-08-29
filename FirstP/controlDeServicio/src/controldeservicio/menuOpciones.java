@@ -13,8 +13,8 @@ public class menuOpciones {
     //Métodos
     
     public void mostrar(){        
-        System.out.println("\t\t"+nombreMenu);
-        for(int i=0;i<4;i++){
+        System.out.println("\n\t\t"+nombreMenu);
+        for(int i=0;i<opcionesI.length;i++){
             System.out.println((i+1)+". "+opcionesI[i]);
         }
          do{

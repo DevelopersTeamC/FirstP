@@ -19,7 +19,7 @@ public class agregarCliente {
         agregarCliente eleccion=new agregarCliente();
         identificacionCliente++;
         System.out.println("\n\t\tMenu Agregar cliente");
-        for(int i=0;i<4;i++){
+        for(int i=0;i<opcionesMenu.length;i++){
             System.out.println((i+1)+". "+opcionesMenu[i]);
         }
         do{
@@ -49,8 +49,8 @@ public class agregarCliente {
     }
     
     public void protocolo(){
-        System.out.println("¿Qué protocolo elige: ");
-        for(int i=0;i<7;i++){
+        System.out.println("\n\t\t¿Qué protocolo elige: ");
+        for(int i=0;i<tipoSesion.length;i++){
             System.out.println((i+1)+". "+tipoSesion[i]);
         }
         do{
