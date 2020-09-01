@@ -2,8 +2,6 @@ package controldeservicio;
 import java.lang.*;
 import javax.swing.JOptionPane;
 
-
-
 public class menuOpciones {
     
     //Atributos

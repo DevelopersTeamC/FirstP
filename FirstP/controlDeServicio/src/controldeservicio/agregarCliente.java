@@ -10,14 +10,17 @@ public class agregarCliente {
     
     byte opcion;
     //Atributos
+    
     String nombreMenu="Agregar cliente";
-    String opcionesMenu[]={"Ingresar el nombre y apellido del cliente.","Ingresar el protocolo del cliente.","Ingresar la fecha final del cliente.","Guardar datos.","Volver a opciones."};
-    String nombreCliente;
+    String opcionesMenu[]={"Ingresar el protocolo del cliente.","Ingresar la fecha final del cliente.","Guardar datos.","Volver a opciones."};
     String[] tipoSesion={"Masaje reductor", "Masaje Relajante", "Manta térmica", "Facial", "Vacumterapia","Electrodos","Volver a opciones"};
     String protocoloElegido;
+    int cedula;
     int identificacionCliente;
     int numFirmas=0;
+    
     //Metodos
+    
     public void mostrarMenu(){ 
         agregarCliente eleccion=new agregarCliente();        
         System.out.println("\n\t\t"+nombreMenu);
@@ -27,19 +30,16 @@ public class agregarCliente {
         do{
         opcion=Byte.parseByte(JOptionPane.showInputDialog("Ingrese una opción: "));
         switch(opcion){
-            case 1:
-                eleccion.datosPersonales();
-                break;
-            case 2:                
+            case 1:                
                 eleccion.protocolo();
                 break;
-            case 3: 
+            case 2: 
                 eleccion.fechaFinal();
                 break;   
-            case 4:
-                eleccion.guardar();
+            case 3:
+                eleccion.guardar(protocoloElegido);
                 break;
-            case 5:
+            case 4:
                 back.mostrar();
                 break;
             default:
@@ -49,26 +49,39 @@ public class agregarCliente {
         }while((opcion<1)||(opcion>5));
     }
     
-    public void guardar(){
+    public void guardar(String protocoloElegido){
         agregarCliente movimiento=new agregarCliente();
+        fecha horario=new fecha();
+        
         identificacionCliente++; 
         
-        System.out.println("\t\tDatos para guardar");
-        System.out.println("\nNombre: "+movimiento.nombreCliente);
-        System.out.print("Identificación: ");
+        System.out.println("\n\t\tDatos para guardar");
+        System.out.println("Nombre: "+(movimiento.datosPersonales()));
+        System.out.println("Identificación de ciudadania: "+movimiento.CC());
+        System.out.print("Identificación en el programa: ");
         for(int i=0;i<10;i++){
             System.out.print(movimiento.identificacion()[i]);
         }        
-        System.out.println("\nServicio: "+movimiento.protocoloElegido);
+        System.out.println("\nServicio: "+protocoloElegido);
+        
+        horario.hora();
+        horario.fecha();
     }
     
-    public void datosPersonales(){ 
-        agregarCliente movimiento=new agregarCliente();
+    private int CC(){
+        int cedulaUsuario = 0; 
+        cedulaUsuario=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cédula del cliente:"));        
         
-        movimiento.nombreCliente= JOptionPane.showInputDialog("Ingrese el nombre y apellido: ");
+        return cedulaUsuario;
+    }
+    
+    public String datosPersonales(){ 
+        String nombreClienteIngresado;
         
-        movimiento.mostrarMenu();        
+        nombreClienteIngresado= JOptionPane.showInputDialog("Ingrese el nombre y apellido del cliente: ");    
         
+        return nombreClienteIngresado;
+               
     }
     public char[] identificacion(){        
         char ID[]=new char[10];        
@@ -136,6 +149,8 @@ public class agregarCliente {
     }
     
     public void fechaFinal(){
+        
+        
         
     }
 }
