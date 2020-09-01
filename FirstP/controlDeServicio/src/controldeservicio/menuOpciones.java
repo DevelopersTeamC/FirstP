@@ -19,7 +19,8 @@ public class menuOpciones {
         opcion=Byte.parseByte(JOptionPane.showInputDialog("Ingrese una opción: "));
         switch(opcion){
             case 1:
-                agregarDato info=new agregarDato();      
+                String motivo=null;                
+                agregarDato info=new agregarDato(motivo);      
                 info.mostrarMenu();
                 break;
             case 2:

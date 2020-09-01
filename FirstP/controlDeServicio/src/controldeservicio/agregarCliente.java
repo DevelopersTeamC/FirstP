@@ -12,7 +12,7 @@ public class agregarCliente {
     //Atributos
     
     String nombreMenu="Agregar cliente";
-    String opcionesMenu[]={"Ingresar el protocolo del cliente.","Ingresar la fecha final del cliente.","Guardar datos.","Volver a opciones."};
+    String opcionesMenu[]={"Ingresar el protocolo del cliente.","Guardar datos.","Volver a opciones."};
     String[] tipoSesion={"Masaje reductor", "Masaje Relajante", "Manta térmica", "Facial", "Vacumterapia","Electrodos","Volver a opciones"};
     String protocoloElegido;
     int cedula;
@@ -34,24 +34,25 @@ public class agregarCliente {
                 eleccion.protocolo();
                 break;
             case 2: 
-                eleccion.fechaFinal();
-                break;   
-            case 3:
                 eleccion.guardar(protocoloElegido);
                 break;
-            case 4:
+            case 3:
                 back.mostrar();
                 break;
             default:
                 JOptionPane.showMessageDialog(null,"Opción inválida.");
                 break;
         }
-        }while((opcion<1)||(opcion>5));
+        }while((opcion<1)||(opcion>3));
     }
     
     public void guardar(String protocoloElegido){
         agregarCliente movimiento=new agregarCliente();
         fecha horario=new fecha();
+        if(protocoloElegido==null){
+            JOptionPane.showMessageDialog(null, "¡¡Está dejando el protocolo vacio!!");
+            movimiento.mostrarMenu();
+        }else{
         
         identificacionCliente++; 
         
@@ -66,6 +67,7 @@ public class agregarCliente {
         
         horario.hora();
         horario.fecha();
+        }
     }
     
     private int CC(){
@@ -147,11 +149,6 @@ public class agregarCliente {
         }while((opcion<1)||(opcion>7));     
        movimiento.mostrarMenu();
     }
-    
-    public void fechaFinal(){
-        
-        
-        
-    }
+
 }
 
