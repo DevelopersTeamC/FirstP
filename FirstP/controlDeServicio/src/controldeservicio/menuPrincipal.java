@@ -4,12 +4,16 @@ import java.lang.*;
 
 public class menuPrincipal {
     //Atributos
-    String nombreApp="CONTROL DE SERVICIO";
-    String opciones[]={"Ver datos", "Ver clientes", "Opciones", "Salir"};
-    byte opcion;
+    String nombreApp;
+    private final String[] opciones={"Ver datos", "Ver clientes", "Opciones", "Salir"};    
+    
+    public menuPrincipal(){
+        this.nombreApp="CONTROL DE SERVICIO"; 
+    }
     //Metodos
     public void mostrarMenu(){
         menuOpciones ir=new menuOpciones();
+        byte opcion;
         System.out.print("\n\t\t"+nombreApp);
         System.out.println("\n\t\t  Menú principal");
         for(int i=0;i<opciones.length;i++){

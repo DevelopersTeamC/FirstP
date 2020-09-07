@@ -5,9 +5,14 @@ import javax.swing.JOptionPane;
 public class menuOpciones {
     
     //Atributos
-    String nombreMenu="Menú de opciones";
-    String[] opcionesI={"Agregar dato.","Agregar nuevo cliente.","Ajustar información de un cliente.","Volver a menú principal."};//Opciones de ingreso
+    String nombreMenu;
+    private final String[] opcionesI={"Agregar dato.","Agregar nuevo cliente.","Ajustar información de un cliente.","Volver a menú principal."};//Opciones de ingreso
     byte opcion;
+    
+    public menuOpciones(){
+        this.nombreMenu="Menú de opciones";
+        this.opcion=0;
+    }
     //Métodos
     
     public void mostrar(){        

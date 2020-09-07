@@ -7,18 +7,19 @@ import java.lang.String;
 
 public class agregarCliente {
     menuOpciones back=new menuOpciones();   
-    
-    byte opcion;
-    //Atributos
-    
-    String nombreMenu="Agregar cliente";
-    String opcionesMenu[]={"Ingresar el protocolo del cliente.","Guardar datos.","Volver a opciones."};
-    String[] tipoSesion={"Masaje reductor", "Masaje Relajante", "Manta térmica", "Facial", "Vacumterapia","Electrodos","Volver a opciones"};
+        
+    //Atributos    
+    byte opcion;    
+    String nombreMenu;
+    private final String opcionesMenu[]={"Ingresar el protocolo del cliente.","Guardar datos.","Volver a opciones."};
+    private final String[] tipoSesion={"Masaje reductor", "Masaje Relajante y exfoliación", "Manta térmica", "Limpieza facial", "Depilación con cera", "Vacumterapia","Electrodos","Volver a opciones"};
     String protocoloElegido;
     int cedula;
-    int identificacionCliente;
-    int numFirmas=0;
     
+    public agregarCliente(){
+        this.nombreMenu="Agregar cliente";
+        this.protocoloElegido=null;
+    }
     //Metodos
     
     public void mostrarMenu(){ 
@@ -29,7 +30,7 @@ public class agregarCliente {
         }
         do{
         opcion=Byte.parseByte(JOptionPane.showInputDialog("Ingrese una opción: "));
-        switch(opcion){
+        switch(opcion){           
             case 1:                
                 eleccion.protocolo();
                 break;
@@ -49,51 +50,63 @@ public class agregarCliente {
     public void guardar(String protocoloElegido){
         agregarCliente movimiento=new agregarCliente();
         fecha horario=new fecha();
+        String nombreGuardar=null, apellidoGuardar=null;
+        
         if(protocoloElegido==null){
             JOptionPane.showMessageDialog(null, "¡¡Está dejando el protocolo vacio!!");
             movimiento.mostrarMenu();
         }else{
+            nombreGuardar=movimiento.nombre();
+            apellidoGuardar=movimiento.apellido();
+            System.out.println("\n\t\tDatos para guardar");
+            System.out.println("Nombre: "+(nombreGuardar)+" "+(apellidoGuardar));
+            System.out.println("Identificación de ciudadania: "+movimiento.cedula());
+            System.out.print("Identificación en el programa: ");
+            for(int i=0;i<10;i++){
+                System.out.print(movimiento.identificacion()[i]);
+            }        
+            System.out.println("\nServicio: "+protocoloElegido);
         
-        identificacionCliente++; 
-        
-        System.out.println("\n\t\tDatos para guardar");
-        System.out.println("Nombre: "+(movimiento.datosPersonales()));
-        System.out.println("Identificación de ciudadania: "+movimiento.CC());
-        System.out.print("Identificación en el programa: ");
-        for(int i=0;i<10;i++){
-            System.out.print(movimiento.identificacion()[i]);
-        }        
-        System.out.println("\nServicio: "+protocoloElegido);
-        
-        horario.hora();
-        horario.fecha();
+            horario.hora();
+            horario.fecha();
         }
     }
     
-    private int CC(){
-        int cedulaUsuario = 0; 
-        cedulaUsuario=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cédula del cliente:"));        
+    private int cedula(){
+        do{
+            this.cedula=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cédula del cliente:"));        
+        }while(this.cedula<=0);
         
-        return cedulaUsuario;
+        return this.cedula;
     }
     
-    public String datosPersonales(){ 
-        String nombreClienteIngresado;
-        
-        nombreClienteIngresado= JOptionPane.showInputDialog("Ingrese el nombre y apellido del cliente: ");    
+    public String nombre(){
+        String nombreClienteIngresado=null;
+        do{
+            nombreClienteIngresado=JOptionPane.showInputDialog("Ingrese sólo el nombre del cliente: "); 
+        }while(nombreClienteIngresado==null);
         
         return nombreClienteIngresado;
-               
     }
+    
+    public String apellido(){
+        String apellidoClienteIngresado=null;
+        do{
+            apellidoClienteIngresado=JOptionPane.showInputDialog("Ingrese sólo el apellido del cliente: "); 
+        }while(apellidoClienteIngresado==null);
+        
+        return apellidoClienteIngresado;
+    }
+    
     public char[] identificacion(){        
         char ID[]=new char[10];        
-        char letras[]={'A','a','B','b','C','c','D','d','E','e','F','f','G','g','H','h','I','i','J','j','K','k','L','l','M','m','N','n','Ñ','ñ','O','o','P','p','Q','q','R','r','S','s','T','t','U','u','V','v','W','w','X','x','Y','y','Z','z'};
+        char letras[]={'A','1','a','2','B','3','b','4','C','5','c','6','D','7','d','8','E','9','e','1','F','2','f','3','G','4','g','5','H','6','h','7','I','8','i','9','J','1','j','2','K','3','k','4','L','5','l','6','M','7','m','8','N','9','n','1','Ñ','2','ñ','3','O','4','o','5','P','6','p','7','Q','8','q','9','R','1','r','2','S','3','s','4','T','5','t','6','U','7','u','8','V','9','v','1','W','2','w','3','X','4','x','5','Y','6','y','7','Z','8','z','9'};
                 
         for(int i=0;i<10;i++){
             byte aleatorio=-1;
             do{
-                aleatorio=(byte)(Math.random()*100);
-            }while((aleatorio<0)||(aleatorio>=54));
+                aleatorio=(byte)(Math.random()*200);
+            }while((aleatorio<0)||(aleatorio>=108));
             ID[i]=letras[aleatorio];
         }
         
@@ -139,7 +152,12 @@ public class agregarCliente {
                 movimiento.protocoloElegido=tipoSesion[5];
                  }               
                 break;
-            case 7: 
+            case 7:
+                for (String tipoSesion1 : tipoSesion) {
+                movimiento.protocoloElegido=tipoSesion[6];
+                }
+                break;
+            case 8: 
                 back.mostrar();
                 break;             
             default:
