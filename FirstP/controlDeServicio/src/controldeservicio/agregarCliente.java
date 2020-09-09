@@ -10,9 +10,9 @@ public class agregarCliente {
         
     //Atributos    
     byte opcion;    
-    String nombreMenu;
+    final String nombreMenu;
     private final String opcionesMenu[]={"Ingresar el protocolo del cliente.","Guardar datos.","Volver a opciones."};
-    private final String[] tipoSesion={"Masaje reductor", "Masaje Relajante y exfoliación", "Manta térmica", "Limpieza facial", "Depilación con cera", "Vacumterapia","Electrodos","Volver a opciones"};
+    private final String[] tipoSesion={"Depilación con cera","Electrodos","Limpieza facial","Lipoláser","Masaje reductor", "Masaje Relajante y exfoliación", "Manta térmica", "Vacumterapia","Volver a opciones"};
     String protocoloElegido;
     int cedula;
     
@@ -20,10 +20,9 @@ public class agregarCliente {
         this.nombreMenu="Agregar cliente";
         this.protocoloElegido=null;
     }
-    //Metodos
     
-    public void mostrarMenu(){ 
-        agregarCliente eleccion=new agregarCliente();        
+    //Metodos   
+    public void mostrarMenu(){         
         System.out.println("\n\t\t"+nombreMenu);
         for(int i=0;i<opcionesMenu.length;i++){
             System.out.println((i+1)+". "+opcionesMenu[i]);
@@ -32,10 +31,10 @@ public class agregarCliente {
         opcion=Byte.parseByte(JOptionPane.showInputDialog("Ingrese una opción: "));
         switch(opcion){           
             case 1:                
-                eleccion.protocolo();
+                protocolo();
                 break;
             case 2: 
-                eleccion.guardar(protocoloElegido);
+                guardar(protocoloElegido);
                 break;
             case 3:
                 back.mostrar();
@@ -48,22 +47,21 @@ public class agregarCliente {
     }
     
     public void guardar(String protocoloElegido){
-        agregarCliente movimiento=new agregarCliente();
         fecha horario=new fecha();
         String nombreGuardar=null, apellidoGuardar=null;
         
         if(protocoloElegido==null){
             JOptionPane.showMessageDialog(null, "¡¡Está dejando el protocolo vacio!!");
-            movimiento.mostrarMenu();
+            mostrarMenu();
         }else{
-            nombreGuardar=movimiento.nombre();
-            apellidoGuardar=movimiento.apellido();
+            nombreGuardar=nombre();
+            apellidoGuardar=apellido();
             System.out.println("\n\t\tDatos para guardar");
             System.out.println("Nombre: "+(nombreGuardar)+" "+(apellidoGuardar));
-            System.out.println("Identificación de ciudadania: "+movimiento.cedula());
+            System.out.println("Identificación de ciudadania: "+cedula());
             System.out.print("Identificación en el programa: ");
             for(int i=0;i<10;i++){
-                System.out.print(movimiento.identificacion()[i]);
+                System.out.print(identificacion()[i]);
             }        
             System.out.println("\nServicio: "+protocoloElegido);
         
@@ -113,8 +111,7 @@ public class agregarCliente {
         return ID;
     }
     
-    public void protocolo(){
-        agregarCliente movimiento=new agregarCliente();        
+    public void protocolo(){        
         System.out.println("\n\t\t¿Qué protocolo elige? ");
         for(int i=0;i<tipoSesion.length;i++){
             System.out.println((i+1)+". "+tipoSesion[i]);
@@ -124,40 +121,45 @@ public class agregarCliente {
         switch(opcion){
             case 1:
                 for (String tipoSesion1 : tipoSesion) {
-                movimiento.protocoloElegido=tipoSesion[0];
+                protocoloElegido=tipoSesion[0];
                 }
                 break;
             case 2:
                 for (String tipoSesion1 : tipoSesion) {
-                movimiento.protocoloElegido=tipoSesion[1];
+                protocoloElegido=tipoSesion[1];
                 }                
                 break;
             case 3:
                 for (String tipoSesion1 : tipoSesion) {
-                movimiento.protocoloElegido=tipoSesion[2];
+                protocoloElegido=tipoSesion[2];
                 }               
                 break;   
             case 4:
                 for (String tipoSesion1 : tipoSesion) {
-                movimiento.protocoloElegido=tipoSesion[3];
+                protocoloElegido=tipoSesion[3];
                 }              
                 break;
             case 5:
                 for (String tipoSesion1 : tipoSesion) {
-                movimiento.protocoloElegido=tipoSesion[4];
+                protocoloElegido=tipoSesion[4];
                 }              
                 break;
             case 6:
                 for (String tipoSesion1 : tipoSesion) {
-                movimiento.protocoloElegido=tipoSesion[5];
+                protocoloElegido=tipoSesion[5];
                  }               
                 break;
             case 7:
                 for (String tipoSesion1 : tipoSesion) {
-                movimiento.protocoloElegido=tipoSesion[6];
+                protocoloElegido=tipoSesion[6];
                 }
                 break;
-            case 8: 
+            case 8:
+                for (String tipoSesion1 : tipoSesion) {
+                protocoloElegido=tipoSesion[7];
+                }
+                break;
+            case 9: 
                 back.mostrar();
                 break;             
             default:
@@ -165,7 +167,7 @@ public class agregarCliente {
                 break;
         }
         }while((opcion<1)||(opcion>7));     
-       movimiento.mostrarMenu();
+       mostrarMenu();
     }
 
 }

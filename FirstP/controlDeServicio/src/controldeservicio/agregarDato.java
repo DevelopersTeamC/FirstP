@@ -3,20 +3,27 @@ package controldeservicio;
 import javax.swing.JOptionPane;
 
 public class agregarDato {
-    menuOpciones back=new menuOpciones();  
+    menuOpciones back=new menuOpciones();
+    
     //Atributos
-    String nombreMenu="Agregar dato";
-    String opcionesMenu[]={"Agregar ingreso.","Agregar egreso.","Volver a opciones."};
-    String motivo;
+    final String nombreMenu="Agregar dato";
+    final String opcionesMenu[]={"Agregar ingreso.","Agregar egreso.","Volver a opciones."};
+    private String motivo;
     final String flujo[]={"Ingreso", "Egreso"};
     
     agregarDato(String motivo){
         this.motivo=motivo;
     }      
-    
+
+    private String getMotivo() {
+        return motivo;
+    }
+
+    private void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
     //Metodos
     public void mostrarMenu(){  
-        agregarDato movimiento=new agregarDato(motivo);
         byte opcion;
         System.out.println("\n\t\t"+nombreMenu);
         for(int i=0;i<opcionesMenu.length;i++){
@@ -26,10 +33,10 @@ public class agregarDato {
             opcion=Byte.parseByte(JOptionPane.showInputDialog("Ingrese una opción: "));
             switch(opcion){            
                 case 1:
-                   movimiento.agregarIngreso();
+                   agregarIngreso();
                    break;
                 case 2:
-                   movimiento.agregarEgreso();
+                   agregarEgreso();
                    break;
                 case 3:
                    back.mostrar();
@@ -42,33 +49,32 @@ public class agregarDato {
     }
     
     void agregarIngreso(){
-        String motivoIngreso, motivoFlujoIngreso=null;
+        String motivoFlujoIngreso=null;
         int dineroDeIngreso=0;
         
-        motivoIngreso=JOptionPane.showInputDialog("Escriba el motivo del ingreso: ");
+        this.motivo=JOptionPane.showInputDialog("Escriba el motivo del ingreso: ");
         dineroDeIngreso=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de dinero a registrar: "));
         
         for(int i=0;i<flujo.length;i++){
            motivoFlujoIngreso=flujo[0]; 
         }
-        
-        agregarDato movimiento=new agregarDato(motivoIngreso);        
-        movimiento.guardar(motivoFlujoIngreso, dineroDeIngreso);
+               
+        guardar(motivoFlujoIngreso, dineroDeIngreso);
         
     }
     void agregarEgreso(){
-        String motivoEgreso, motivoFlujoEgreso=null;
+        String motivoFlujoEgreso=null;
         int dineroDeEgreso=0;
         
-        motivoEgreso=JOptionPane.showInputDialog("Escriba el motivo del egreso: ");
+        this.motivo=JOptionPane.showInputDialog("Escriba el motivo del egreso: ");
         dineroDeEgreso=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de dinero a registrar:"));
         
         for(int i=0;i<flujo.length;i++){
            motivoFlujoEgreso=flujo[1]; 
         }
         
-        agregarDato movimiento=new agregarDato(motivoEgreso);        
-        movimiento.guardar(motivoFlujoEgreso, dineroDeEgreso);
+               
+        guardar(motivoFlujoEgreso, dineroDeEgreso);
     }
     
     void guardar(String motivoFlujoCualquiera, int dineroFlujo){

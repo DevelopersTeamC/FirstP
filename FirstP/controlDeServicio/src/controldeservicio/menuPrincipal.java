@@ -3,6 +3,9 @@ import javax.swing.JOptionPane;
 import java.lang.*;
 
 public class menuPrincipal {
+    
+    menuOpciones ir=new menuOpciones();
+    
     //Atributos
     String nombreApp;
     private final String[] opciones={"Ver datos", "Ver clientes", "Opciones", "Salir"};    
@@ -11,8 +14,7 @@ public class menuPrincipal {
         this.nombreApp="CONTROL DE SERVICIO"; 
     }
     //Metodos
-    public void mostrarMenu(){
-        menuOpciones ir=new menuOpciones();
+    public void mostrarMenu(){    
         byte opcion;
         System.out.print("\n\t\t"+nombreApp);
         System.out.println("\n\t\t  Menú principal");

@@ -25,7 +25,7 @@ public class menuOpciones {
         switch(opcion){
             case 1:
                 String motivo=null;                
-                agregarDato info=new agregarDato(motivo);      
+                agregarDato info=new agregarDato(motivo);                 
                 info.mostrarMenu();
                 break;
             case 2:
