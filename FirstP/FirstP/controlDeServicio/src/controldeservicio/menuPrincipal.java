@@ -2,32 +2,43 @@ package controldeservicio;
 import javax.swing.JOptionPane;
 import java.lang.*;
 
-public class menuPrincipal {
+public class menuPrincipal extends menu {
     
-    menuOpciones ir=new menuOpciones();
+    menuOpciones ir=new menuOpciones();        
+
+    public menuPrincipal() {
+    }
     
-    //Atributos
-    String nombreApp;
-    private final String[] opciones={"Ver datos", "Ver clientes", "Opciones", "Salir"};    
-    
-    public menuPrincipal(){
-        this.nombreApp="CONTROL DE SERVICIO"; 
+    private void datosMenu(){
+        String nombreMenu;
+        String menuOpciones[]=new String[4];        
+        
+        nombreMenu="Menu principal";
+        menuOpciones[0]="Ver horario";
+        menuOpciones[1]="Ver cliente";
+        menuOpciones[2]="Opciones";
+        menuOpciones[3]="Salir";
+        
+        setNombreMenu(nombreMenu);
+        setOpciones(menuOpciones);
     }
     //Metodos
     public void mostrarMenu(){    
+        datosMenu();
         byte opcion;
         System.out.print("\n\t\t"+nombreApp);
-        System.out.println("\n\t\t  Menú principal");
-        for(int i=0;i<opciones.length;i++){
-            System.out.println((i+1)+". "+opciones[i]);
+        System.out.println("\n\t\t "+getNombreMenu());
+        for(int i=0;i<getOpciones().length;i++){
+            System.out.println((i+1)+". "+getOpciones()[i]);
         } 
         
         do{
         opcion=Byte.parseByte(JOptionPane.showInputDialog("Ingrese una opción: "));
-        switch(opcion){
-            case 1:
+        setOpcionIngresada(opcion);
+        switch(getOpcionIngresada()){
+            case 1://Ver horario
                 break;
-            case 2:
+            case 2://Ver clientes
                 break;
             case 3:
                 ir.mostrar();

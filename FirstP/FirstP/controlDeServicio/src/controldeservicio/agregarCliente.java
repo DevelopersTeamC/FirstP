@@ -3,7 +3,8 @@ package controldeservicio;
 import javax.swing.JOptionPane;
 
 public class agregarCliente {
-    menuOpciones back=new menuOpciones();   
+    menuOpciones back=new menuOpciones();  
+    cliente clie1=new cliente();
         
     //Atributos    
     byte opcion;    
@@ -11,7 +12,6 @@ public class agregarCliente {
     private final String opcionesMenu[]={"Ingresar el protocolo del cliente.","Guardar datos.","Volver a opciones."};
     private final String[] tipoSesion={"Depilación con cera","Electrodos","Limpieza facial","Lipoláser","Masaje reductor", "Masaje Relajante y exfoliación", "Manta térmica", "Vacumterapia","Volver a opciones"};
     String protocoloElegido;
-    int cedula;
     
     public agregarCliente(){
         this.nombreMenu="Agregar cliente";
@@ -55,6 +55,7 @@ public class agregarCliente {
             apellidoGuardar=apellido();
             System.out.println("\n\t\tDatos para guardar");
             System.out.println("Nombre: "+(nombreGuardar)+" "+(apellidoGuardar));
+            System.out.println("Telefono: "+telefono());
             System.out.println("Identificación de ciudadania: "+cedula());
             System.out.print("Identificación en el programa: ");
             for(int i=0;i<10;i++){
@@ -66,13 +67,35 @@ public class agregarCliente {
             horario.fecha();
         }
     }
+    public long telefono(){
+        int opcionE=0;
+        long tele=0;
+        
+        do{
+            opcionE=Integer.parseInt(JOptionPane.showInputDialog("Tiene numero telefónico:\n"+
+                    "1. Si.\n"+
+                    "2. No."));
+        }while(opcionE<=0||opcionE>2);
+
+        switch(opcionE){
+            case 1:
+             tele=Long.parseLong(JOptionPane.showInputDialog("Digite su número telefónico:"));        
+            break;        
+        }        
+
+        clie1.setTelefono(tele);
+        return clie1.getTelefono();
+    }
     
     private int cedula(){
+        int cedula;
         do{
-            this.cedula=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cédula del cliente:"));        
-        }while(this.cedula<=0);
+            cedula=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cédula del cliente:"));        
+        }while(cedula<=0);
         
-        return this.cedula;
+        clie1.setCedula(cedula);
+        
+        return clie1.getCedula();
     }
     
     public String nombre(){
@@ -81,7 +104,9 @@ public class agregarCliente {
             nombreClienteIngresado=JOptionPane.showInputDialog("Ingrese sólo el nombre del cliente: "); 
         }while(nombreClienteIngresado==null);
         
-        return nombreClienteIngresado;
+        clie1.setNombre(nombreClienteIngresado);
+        
+        return clie1.getNombre();
     }
     
     public String apellido(){
@@ -90,7 +115,9 @@ public class agregarCliente {
             apellidoClienteIngresado=JOptionPane.showInputDialog("Ingrese sólo el apellido del cliente: "); 
         }while(apellidoClienteIngresado==null);
         
-        return apellidoClienteIngresado;
+        clie1.setApellido(apellidoClienteIngresado);
+        
+        return clie1.getApellido();
     }
     
     public char[] identificacion(){        

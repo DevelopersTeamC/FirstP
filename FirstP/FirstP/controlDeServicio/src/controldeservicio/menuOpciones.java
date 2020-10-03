@@ -2,30 +2,38 @@ package controldeservicio;
 import java.lang.*;
 import javax.swing.JOptionPane;
 
-public class menuOpciones {
-    
-    //Atributos
-    String nombreMenu;
-    private final String[] opcionesI={"Agregar dato.","Agregar nuevo cliente.","Ajustar información de un cliente.","Volver a menú principal."};//Opciones de ingreso
-    byte opcion;
-    
-    public menuOpciones(){
-        this.nombreMenu="Menú de opciones";
-        this.opcion=0;
+public class menuOpciones extends menu{
+        
+    public menuOpciones() {
     }
-    //Métodos
     
-    public void mostrar(){        
-        System.out.println("\n\t\t"+nombreMenu);
-        for(int i=0;i<opcionesI.length;i++){
-            System.out.println((i+1)+". "+opcionesI[i]);
+    private void datosMenu(){
+        String nombreMenu;
+        String menuOpciones[]=new String[4];        
+        
+        nombreMenu="Menu principal";
+        menuOpciones[0]="Agregar nuevo empleado.";
+        menuOpciones[1]="Agregar nuevo cliente.";
+        menuOpciones[2]="Ajustar informacion de un cliente.";
+        menuOpciones[3]="Volver al menú principal.";
+        
+        setNombreMenu(nombreMenu);
+        setOpciones(menuOpciones);
+    }
+    
+    //Métodos
+    public void mostrar(){
+        datosMenu();
+        byte opcion;
+        System.out.println("\n\t\t"+getNombreMenu());
+        for(int i=0;i<getOpciones().length;i++){
+            System.out.println((i+1)+". "+getOpciones()[i]);
         }
          do{
         opcion=Byte.parseByte(JOptionPane.showInputDialog("Ingrese una opción: "));
-        switch(opcion){
-            case 1:                                
-                agregarDato info=new agregarDato();                 
-                info.mostrarMenu();
+        setOpcionIngresada(opcion);
+        switch(getOpcionIngresada()){
+            case 1:
                 break;
             case 2:
                 agregarCliente ir=new agregarCliente();
